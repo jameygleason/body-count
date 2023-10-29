@@ -1,0 +1,64 @@
+<body>
+	<div class="body-count-container">
+	</div>
+	
+	<p>
+		Keep in mind that each one of those numbers represents an actual human person. If you're a person reading this, not unlike yourself.
+	</p>
+	
+	<p>
+		But as far as the number game goes, there's still time. Slow and steady wins the race 😀
+	</p>
+		
+	 <script>
+			const bcc =	document.querySelector(".body-count-container")
+			let cnt = null
+			let name = ""
+			let bodyCount = 0
+			let percentOfMax = 0
+			let maxBC = 0
+			
+			const offenders = [
+				{
+					name: "Adolf Hitler",
+					bodyCount: 6_000_000
+				},
+				{
+					name: "Joseph Stalin",
+					bodyCount: 1_700_000
+				},
+				{
+					name: "The Sackler Family",
+					bodyCount: 1_300_000
+				},
+			]
+			
+			for (let i = 0; i < offenders.length; i++) {
+				if (maxBC < offenders[i]?.bodyCount) {
+					maxBC = offenders[i].bodyCount
+				}
+			}
+			
+			for (let i = 0; i < offenders.length; i++) {
+				cnt = document.createElement("div")
+				name = offenders[i]?.name
+				bodyCount = offenders[i]?.bodyCount
+				percentOfMax = Math.round((bodyCount / maxBC) * 100)
+				
+				cnt.innerHTML = `
+					<label for="file" style="display: block;">
+						Leader: ${name}
+						<br />
+						Body Count: ${bodyCount}
+						<br/>
+						Pecent of Max: ${percentOfMax}%
+					</label>
+		
+					<progress id="${name}-body-count" max="${maxBC}" value="${bodyCount}" style="display: block; width: 100%;">
+						${percentOfMax}%
+					</progress>	
+				`
+				bcc.appendChild(cnt);
+			}
+	 </script>
+</body>
